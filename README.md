@@ -16,6 +16,8 @@ Before you begin, ensure you have the following installed:
 - Node.js (v18 or higher)
 - npm, yarn, or pnpm package manager
 - A database (the application is configured to work with Prisma)
+- Next.js 15 or higher
+
 
 ## Getting Started
 
