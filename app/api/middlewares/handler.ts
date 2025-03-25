@@ -12,7 +12,6 @@ const execMiddleware: ExecMiddleware = async (middleware, request, params) => {
       return result;
     }
   }
-  return undefined;
 };
 
 export const handler: Handler =
