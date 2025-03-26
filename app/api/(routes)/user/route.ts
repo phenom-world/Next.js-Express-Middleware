@@ -1,7 +1,7 @@
 import prisma from '@/prisma';
 
 import { ApiResponse, asyncHandler } from '../../lib';
-import { authorizeUser, handler } from '../../middlewares';
+import { handler, protect } from '../../middlewares';
 import { CustomRequest } from '../../middlewares/types';
 
 const handleGetLoggedinUser = asyncHandler(async (req: CustomRequest) => {
@@ -9,6 +9,6 @@ const handleGetLoggedinUser = asyncHandler(async (req: CustomRequest) => {
   return ApiResponse(user);
 });
 
-const GET = handler(authorizeUser, handleGetLoggedinUser);
+const GET = handler(protect, handleGetLoggedinUser);
 
 export { GET };

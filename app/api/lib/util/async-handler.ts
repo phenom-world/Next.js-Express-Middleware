@@ -24,6 +24,8 @@ export const asyncHandler = <T extends ObjectData>(handler: AsyncHandler<T>) => 
         error instanceof PrismaClientKnownRequestError ||
         error instanceof PrismaClientValidationError
       ) {
+        
+        // Handle database-related errors by passing them to the Prisma error handler
         return handlePrismaError(error);
       } else {
         return ErrorResponse('Internal Server Error', 500);

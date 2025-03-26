@@ -1,8 +1,7 @@
 import prisma from '@/prisma';
 
 import { ApiResponse, asyncHandler, ErrorResponse } from '../../../lib';
-import { authorizeUser, handler } from '../../../middlewares';
-import { authorizeRoles } from '../../../middlewares/authorizeUser';
+import { protect, authorize, handler } from '../../../middlewares';
 import { CustomRequest } from '@/app/api/middlewares/types';
 
 const handleDeleteUser = asyncHandler(async (_req: CustomRequest, params: { id: string }) => {
@@ -15,6 +14,6 @@ const handleDeleteUser = asyncHandler(async (_req: CustomRequest, params: { id: 
   return ApiResponse(null, 'User deleted successfully');
 });
 
-const DELETE = handler(authorizeUser, authorizeRoles('ADMIN'), handleDeleteUser);
+const DELETE = handler(protect, authorize('ADMIN'), handleDeleteUser);
 
 export { DELETE };

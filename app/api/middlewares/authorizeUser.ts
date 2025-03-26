@@ -4,7 +4,7 @@ import { ErrorResponse, handleTokenError, isEmpty } from '../lib';
 import { AuthorizeUser, AuthorizeRoles } from './types';
 import { verifyToken } from '../lib/util';
 
-export const authorizeUser: AuthorizeUser = async (req, _params, next) => {
+export const protect: AuthorizeUser = async (req, _params, next) => {
   let token = '';
   const authorization = req.headers.get('authorization');
   const cookie = req.cookies.get('auth')?.value;
@@ -29,7 +29,7 @@ export const authorizeUser: AuthorizeUser = async (req, _params, next) => {
   next();
 };
 
-export const authorizeRoles: AuthorizeRoles = (...roles) => {
+export const authorize: AuthorizeRoles = (...roles) => {
   return async (req, _params, next) => {
     if (!roles.includes(req.user.role)) return ErrorResponse('Forbidden: Access denied', 401);
     next();
